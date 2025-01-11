@@ -30,12 +30,7 @@ Após a execução, você poderá acessar o serviço no endereço http://localho
 - **Nginx**: Proxy reverso para gerenciamento de requisições.
 - **Node.js**: Backend para registrar e exibir dados.
 - **MySQL**: Banco de dados para armazenar os registros.
-
-## 📤 Publicação no Docker Hub
-
-A imagem Docker foi publicada no **Docker Hub** e pode ser acessada no seguinte repositório:
-
-👉 [kelseyjr/fullcycle](https://hub.docker.com/r/kelseyjr/fullcycle)
+  
 
 ## 🌟 Funcionalidades
 
