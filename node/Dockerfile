@@ -1,7 +1,9 @@
-FROM node:22.13.0
+FROM node:22.13.0-alpine
 
-WORKDIR /usr/src/app
+# Set the working directory inside the container
+WORKDIR /code
 
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
 # Install dependencies
@@ -13,4 +15,5 @@ COPY . .
 # Expose the port the app runs on
 EXPOSE 3000
 
-ENTRYPOINT [ "node", "index.js" ]
+# Start the application
+CMD ["node", "index.js"]
