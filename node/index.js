@@ -26,8 +26,6 @@ const createPeopleTable = async () => {
 
 
 fastify.get('/', async (request, reply) => {
-  await createPeopleTable()
-
   const randomName = faker.person.fullName();
   const connection = await fastify.mysql.getConnection()
   await connection.query(
@@ -49,6 +47,7 @@ fastify.get('/', async (request, reply) => {
 const start = async () => {
   try {
     await fastify.listen({ port: 3000, host: '0.0.0.0' })
+    await createPeopleTable()
   } catch (err) {
     fastify.log.error(err)
     process.exit(1)

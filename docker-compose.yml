@@ -9,12 +9,13 @@ services:
     volumes:
       - ./node:/usr/src/app
     tty: true
+    entrypoint: dockerize -wait tcp://database:3306 -timeout 20s docker-entrypoint.sh
     depends_on:
       - database
 
   database:
     ## Enable this line to execute on M1 machines
-    platform: linux/x86_64
+    #platform: linux/x86_64
     image: mysql:5.7
     command: --innodb-use-native-aio=0
     container_name: database

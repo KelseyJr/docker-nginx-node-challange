@@ -1,19 +1,13 @@
-FROM node:22.13.0-alpine
+FROM node:22.13.0
 
 # Set the working directory inside the container
-WORKDIR /code
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json
-COPY package*.json ./
+RUN apt-get update && apt-get install -y wget
 
-# Install dependencies
-RUN npm install
+ENV DOCKERIZE_VERSION v0.9.2
 
-# Copy the application code
-COPY . .
-
-# Expose the port the app runs on
-EXPOSE 3000
-
-# Start the application
-CMD ["node", "index.js"]
+RUN apt-get update \
+    && apt-get install -y wget \
+    && wget -O - https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz | tar xzf - -C /usr/local/bin \
+    && apt-get autoremove -yqq --purge wget && rm -rf /var/lib/apt/lists/*
